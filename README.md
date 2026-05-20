@@ -72,7 +72,6 @@ Provides intelligent suggestions like:
 
 ---
 
-# 📸 Project Screenshots
 
 ## Dashboard
 
