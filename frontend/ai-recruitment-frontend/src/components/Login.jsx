@@ -14,7 +14,7 @@ function Login() {
     try {
 
       const response = await axios.post(
-        "https://ai-recruitment-platform-ph30.onrender.com/login",
+        ${import.meta.env.VITE_API_URL}/login,
         {
           email: email,
           password: password,

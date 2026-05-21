@@ -15,7 +15,7 @@ function Register() {
     try {
 
       const response = await axios.post(
-        "https://ai-recruitment-platform-ph30.onrender.com/register",
+        ${import.meta.env.VITE_API_URL}/register,
         {
           username: username,
           email: email,
