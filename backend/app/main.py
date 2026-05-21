@@ -55,7 +55,7 @@ SKILLS_DB = [
     "PyTorch",
     "Git",
     "HTML",
-    "CSS"
+    "CSS",
     "Kubernetes",
     "Terraform",
     "Linux",
@@ -323,7 +323,7 @@ def all_resumes(db: Session = Depends(get_db)):
 def top_resumes(db: Session = Depends(get_db)):
 
     resumes = db.query(models.Resume).order_by(
-        models.Resume.score.desc()
+        models.Resume.resume_score.desc()
     ).all()
 
     return resumes
