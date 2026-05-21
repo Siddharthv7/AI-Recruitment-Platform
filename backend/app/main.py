@@ -22,7 +22,7 @@ from app.models import Resume
 from app.resume import calculate_resume_score
 from fastapi.middleware.cors import CORSMiddleware
 
-Base.metadata.drop_all(bind=engine)
+# Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -39,7 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-db = SessionLocal()
+# db = SessionLocal()
 
 SKILLS_DB = [
     "Python",
@@ -191,7 +191,10 @@ def extract_resume(file: UploadFile = File(...)):
     }
 
 @app.post("/save-resume")
-async def save_resume(data: dict):
+async def save_resume(
+    data: dict,
+    db: Session = Depends(get_db)
+):
 
     new_resume = Resume(
         filename=data.get("filename"),
@@ -208,7 +211,7 @@ async def save_resume(data: dict):
     return {
         "message": "Resume Saved Successfully"
     }
-        
+      
 @app.post("/extract-skills")
 def extract_skills(file: UploadFile = File(...)):
 
