@@ -22,6 +22,7 @@ from app.models import Resume
 from app.resume import calculate_resume_score
 from fastapi.middleware.cors import CORSMiddleware
 
+Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -93,7 +94,7 @@ def register(user: UserCreate):
     existing_user = db.query(User).filter(User.email == user.email).first()
 
     if existing_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=400, detail="Email already exists")
 
     hashed_password = hash_password(user.password)
 
@@ -107,7 +108,7 @@ def register(user: UserCreate):
     db.commit()
     db.refresh(new_user)
 
-    return {"message": "User registered successfully"}
+    return {"message": "Registration Successful"}
 
 @app.post("/login")
 async def login(data: dict):
