@@ -26,8 +26,6 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-db = SessionLocal()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -37,6 +35,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+db = SessionLocal()
 
 SKILLS_DB = [
     "Python",
