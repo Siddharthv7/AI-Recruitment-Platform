@@ -5,7 +5,7 @@ from fastapi import File, UploadFile
 import shutil
 import os
 import pdfplumber
-from fastapi.middleware.cors import CORSMiddleware
+
 
 from app.schemas import UserLogin
 from app.hashing import verify_password
@@ -20,12 +20,14 @@ from fastapi import HTTPException
 from app.database import SessionLocal
 from app.models import Resume
 from app.resume import calculate_resume_score
+from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 db = SessionLocal()
+
 
 app.add_middleware(
     CORSMiddleware,
