@@ -31,7 +31,7 @@ function Dashboard() {
     try {
 
       const response = await axios.post(
-        ${import.meta.env.VITE_API_URL}/extract-skills,
+        `${import.meta.env.VITE_API_URL}/extract-skills`,
         formData
       );
 
@@ -40,7 +40,7 @@ function Dashboard() {
     setAiFeedback(response.data.ai_feedback || []);
     
     await axios.post(
-        ${import.meta.env.VITE_API_URL}/save-resume,
+        `${import.meta.env.VITE_API_URL}/save-resume`,
         {
             filename: file.name,
             skills: response.data.skills,
@@ -62,7 +62,7 @@ function Dashboard() {
     try {
 
       const response = await axios.post(
-        ${import.meta.env.VITE_API_URL}/match-job,
+        `${import.meta.env.VITE_API_URL}/match-job`,
         {
           resume_skills: result.skills,
           job_description: jobDescription
