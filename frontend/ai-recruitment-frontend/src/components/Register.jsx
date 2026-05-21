@@ -17,21 +17,30 @@ function Register() {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/register`,
         {
-          username: username,
+          name: username,
           email: email,
           password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-    
 
-      alert(response.data.message);
+      alert("Registration Successful");
+
+      console.log(response.data);
 
       navigate("/");
 
     } catch (error) {
 
       console.log(error);
-      alert("Registration Failed");
+
+      alert(
+        error.response?.data?.detail || "Registration Failed"
+      );
     }
   };
 
