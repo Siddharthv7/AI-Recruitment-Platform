@@ -266,36 +266,37 @@ def resume_score(
 
             if extracted:
                 text += extracted
-                
-        job_description = "Python FastAPI React PostgreSQL AI ML"
 
-        score = calculate_resume_score(
-            text,
-            job_description
-        )
+    job_description = "Python FastAPI React PostgreSQL AI ML"
 
-        feedback = ["AI Resume Matching Completed"]
-        ai_feedback = []
+    score = calculate_resume_score(
+        text,
+        job_description
+    )
 
-        if "github.com" not in text.lower():
-            ai_feedback.append("Add GitHub project links")
+    feedback = ["AI Resume Matching Completed"]
 
-        if "linkedin.com" not in text.lower():
-            ai_feedback.append("Add LinkedIn profile")
+    ai_feedback = []
 
-        if "certification" not in text.lower():
-            ai_feedback.append("Add certifications")
+    if "github.com" not in text.lower():
+        ai_feedback.append("Add GitHub project links")
 
-        if "%" not in text:
-            ai_feedback.append("Add measurable achievements with percentages")
+    if "linkedin.com" not in text.lower():
+        ai_feedback.append("Add LinkedIn profile")
 
-        if "project" not in text.lower():
-            ai_feedback.append("Add strong projects section")
+    if "certification" not in text.lower():
+        ai_feedback.append("Add certifications")
 
-        if len(text.split()) < 300:
-            ai_feedback.append("Resume content is too short")
+    if "%" not in text:
+        ai_feedback.append("Add measurable achievements with percentages")
 
-        new_resume = models.Resume(
+    if "project" not in text.lower():
+        ai_feedback.append("Add strong projects section")
+
+    if len(text.split()) < 300:
+        ai_feedback.append("Resume content is too short")
+
+    new_resume = models.Resume(
         filename=file.filename,
         skills=", ".join(feedback),
         resume_score=score,
