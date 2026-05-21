@@ -28,10 +28,11 @@ app = FastAPI()
 
 db = SessionLocal()
 
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "https://ai-recruitment-platform-1-m70h.onrender.com",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
