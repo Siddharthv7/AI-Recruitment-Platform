@@ -14,7 +14,7 @@ function Login() {
     try {
 
       const response = await axios.post(
-        axios.post(`${import.meta.env.VITE_API_URL}/login`, data),
+        `${import.meta.env.VITE_API_URL}/login`,
         {
           email: email,
           password: password,

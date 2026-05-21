@@ -15,13 +15,14 @@ function Register() {
     try {
 
       const response = await axios.post(
-        axios.post(`${import.meta.env.VITE_API_URL}/register`, data),
+        `${import.meta.env.VITE_API_URL}/register`,
         {
           username: username,
           email: email,
           password: password,
         }
       );
+    
 
       alert(response.data.message);
 

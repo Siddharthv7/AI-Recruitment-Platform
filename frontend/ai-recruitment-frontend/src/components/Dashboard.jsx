@@ -31,7 +31,7 @@ function Dashboard() {
     try {
 
       const response = await axios.post(
-        axios.post(`${import.meta.env.VITE_API_URL}/extract-skills`, formData),
+        `${import.meta.env.VITE_API_URL}/extract-skills`,
         formData
       );
 
@@ -40,7 +40,7 @@ function Dashboard() {
     setAiFeedback(response.data.ai_feedback || []);
     
     await axios.post(
-        axios.post(`${import.meta.env.VITE_API_URL}/save-resume`, data),
+        `${import.meta.env.VITE_API_URL}/save-resume`,
         {
             filename: file.name,
             skills: response.data.skills,
