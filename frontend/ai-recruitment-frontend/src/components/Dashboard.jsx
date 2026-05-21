@@ -31,7 +31,7 @@ function Dashboard() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/extract-skills",
+        "https://ai-recruitment-platform-ph30.onrender.com/extract-skills",
         formData
       );
 
@@ -40,7 +40,7 @@ function Dashboard() {
     setAiFeedback(response.data.ai_feedback || []);
     
     await axios.post(
-        "http://127.0.0.1:8000/save-resume",
+        "https://ai-recruitment-platform-ph30.onrender.com/save-resume",
         {
             filename: file.name,
             skills: response.data.skills,
@@ -62,7 +62,7 @@ function Dashboard() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/match-job",
+        "https://ai-recruitment-platform-ph30.onrender.com/match-job",
         {
           resume_skills: result.skills,
           job_description: jobDescription

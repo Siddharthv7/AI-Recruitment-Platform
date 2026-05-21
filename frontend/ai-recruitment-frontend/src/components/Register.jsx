@@ -15,7 +15,7 @@ function Register() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/register",
+        "https://ai-recruitment-platform-ph30.onrender.com/register",
         {
           username: username,
           email: email,
