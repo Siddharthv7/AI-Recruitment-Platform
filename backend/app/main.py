@@ -89,12 +89,17 @@ def home():
 
 
 @app.post("/register")
-def register(user: UserCreate):
+def register(user: UserCreate, db: Session = Depends(get_db)):
 
-    existing_user = db.query(User).filter(User.email == user.email).first()
+    existing_user = db.query(User).filter(
+        User.email == user.email
+    ).first()
 
     if existing_user:
-        raise HTTPException(status_code=400, detail="Email already exists")
+        raise HTTPException(
+            status_code=400,
+            detail="Email already exists"
+        )
 
     hashed_password = hash_password(user.password)
 
@@ -108,10 +113,15 @@ def register(user: UserCreate):
     db.commit()
     db.refresh(new_user)
 
-    return {"message": "Registration Successful"}
+    return {
+        "message": "Registration Successful"
+    }
 
 @app.post("/login")
-async def login(data: dict):
+async def login(
+    data: dict,
+    db: Session = Depends(get_db)
+):
 
     email = data.get("email")
     password = data.get("password")
@@ -135,7 +145,7 @@ async def login(data: dict):
     return {
         "message": "Login Successful",
         "user": {
-            "username": user.username,
+            "name": user.name,
             "email": user.email
         }
     }
